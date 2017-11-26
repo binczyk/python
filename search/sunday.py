@@ -2,16 +2,12 @@ from search.patternSearch import PatternSearch
 
 
 class Sunday(PatternSearch):
-    _patternLen = 0
-
     def __init__(self, text, pattern):
-        self.text = text
-        self.pattern = pattern
-        self._patternLen = len(pattern)
+        super().__init__(text, pattern)
 
     def search(self):
         itr = 0
-        while itr <= len(self.text) - self._patternLen - 1:
+        while itr <= len(self.text) - self._patternLen:
             self.numberOfLoops += 1
             if self.text[itr:itr + self._patternLen] == self.pattern:
                 return itr;
