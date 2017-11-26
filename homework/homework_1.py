@@ -1,5 +1,5 @@
-import math as m
 import cmath as cm
+import math as m
 import time as t
 
 print('\nzad 0:')
@@ -30,7 +30,7 @@ print('\nzad 5:')
 a = m.pi / 7
 b = m.e ** 2
 c = 3 / m.pi
-print(((b * m.tan(2.1 * a) ** c) / (3 * (m.e ** b))) - m.cos(a + c))
+print(((b * (m.tan(2.1 * a) ** c)) / (3 * (m.e ** b))) - m.cos(a + c))
 
 print('\nzad 6:')
 start = t.perf_counter()
