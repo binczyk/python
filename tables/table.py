@@ -1,6 +1,9 @@
-class Table:
+from tables.abstractTable import AbstractTable
+
+
+class Table(AbstractTable):
     def __init__(self):
-        self.table = []
+        super().__init__()
 
     def add(self, value):
         if not self.exists(value):
@@ -13,12 +16,9 @@ class Table:
         return False
 
     def remove(self, value):
-        for itr, val in enumerate(self.table):
-            if value == val:
-                self.table[itr] = self.table[-1]
-                self.table.pop()
-                return
-
-    def print(self):
-        for val in self.table:
-            print(val, end=', ')
+        if self.exists(value):
+            for itr, val in enumerate(self.table):
+                if value == val:
+                    self.table[itr] = self.table[-1]
+                    self.table.pop()
+                    return

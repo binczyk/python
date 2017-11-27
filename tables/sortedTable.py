@@ -1,11 +1,15 @@
-class SortedTable:
+from tables.abstractTable import AbstractTable
+
+
+class SortedTable(AbstractTable):
     def __init__(self):
-        self.table = []
+        super().__init__()
 
     def add(self, value):
-        i = self._findIndex(value)
-        if i == len(self.table) or self.table[i] != value:
-            self.table.insert(i, value)
+        if not self.exists(value):
+            i = self._findIndex(value)
+            if i == len(self.table) or self.table[i] != value:
+                self.table.insert(i, value)
 
     def _findIndex(self, value):
         begin = 0
@@ -25,10 +29,6 @@ class SortedTable:
         return i < len(self.table) and self.table[i] == value
 
     def remove(self, value):
-        i = self._findIndex(value)
-        if i < len(self.table) and self.table[i] == value:
+        if self.exists(value):
+            i = self._findIndex(value)
             del self.table[i]
-
-    def print(self):
-        for val in self.table:
-            print(val, end=', ')

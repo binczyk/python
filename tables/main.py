@@ -1,109 +1,21 @@
-import random
-import time
-
 from tables.chainedTable import ChainedTable
 from tables.hashTable import HashTable
 from tables.sortedTable import SortedTable
 from tables.table import Table
+from tables.testTable import TestTable
 
-list = []
-find = []
+listRange = 1000
+findRange = 100
+randomRange = 999999
 
-for _ in range(1024):
-    list.append(random.randrange(999999))
+tableTest = TestTable(Table(), listRange, findRange, randomRange)
+tableTest.test()
 
-for _ in range(64):
-    list.append(random.randrange(999999))
+sortedTableTest = TestTable(SortedTable(), listRange, findRange, randomRange)
+sortedTableTest.test()
 
-print('Table')
-t = Table()
+hashTable = TestTable(HashTable(listRange), listRange, findRange, randomRange)
+hashTable.test()
 
-start = time.perf_counter()
-for i in list:
-    t.add(i)
-end = time.perf_counter()
-
-print('Adding time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.exists(i)
-end = time.perf_counter()
-
-print('Checking if exists time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.remove(i)
-end = time.perf_counter()
-
-print('Removing time: ', end - start)
-
-print('\nSortedTable')
-t = SortedTable()
-start = time.perf_counter()
-for i in list:
-    t.add(i)
-end = time.perf_counter()
-
-print('Adding time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.exists(i)
-end = time.perf_counter()
-
-print('Checking if exists time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.remove(i)
-end = time.perf_counter()
-
-print('Removing time: ', end - start)
-
-print('\nHashTable')
-t = HashTable(1024)
-start = time.perf_counter()
-for i in list:
-    t.add(i)
-end = time.perf_counter()
-
-print('Adding time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.exists(i)
-end = time.perf_counter()
-
-print('Checking if exists time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.remove(i)
-end = time.perf_counter()
-
-print('Removing time: ', end - start)
-
-print('\nChainedTable')
-t = ChainedTable(1024)
-start = time.perf_counter()
-for i in list:
-    t.add(i)
-end = time.perf_counter()
-
-print('Adding time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.exists(i)
-end = time.perf_counter()
-
-print('Checking if exists time: ', end - start)
-
-start = time.perf_counter()
-for i in find:
-    t.remove(i)
-end = time.perf_counter()
-
-print('Removing time: ', end - start)
+chainedTable = TestTable(ChainedTable(listRange), listRange, findRange, randomRange)
+chainedTable.test()
