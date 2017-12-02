@@ -1,7 +1,7 @@
 from tables.abstractTable import AbstractTable
 
 
-class ChainedTable(AbstractTable):
+class OpenHashTable(AbstractTable):
     _EMPTY = 'EMPTY'
     _REMOVED = 'REMOVED'
 
