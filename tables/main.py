@@ -1,4 +1,4 @@
-from tables.chainedTable import ChainedTable
+from tables.openHashTable import OpenHashTable
 from tables.hashTable import HashTable
 from tables.sortedTable import SortedTable
 from tables.table import Table
@@ -17,5 +17,5 @@ sortedTableTest.test()
 hashTable = TestTable(HashTable(listRange), listRange, findRange, randomRange)
 hashTable.test()
 
-chainedTable = TestTable(ChainedTable(listRange), listRange, findRange, randomRange)
+chainedTable = TestTable(OpenHashTable(listRange), listRange, findRange, randomRange)
 chainedTable.test()
