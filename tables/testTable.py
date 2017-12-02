@@ -23,27 +23,32 @@ class TestTable(AbstractTable):
         self.findRange = findRange
         self.randomRange = randomRange
         self.prepare()
-        print(type(abstractTable), '---Start---')
+        print('---Start---')
+        print(type(abstractTable))
 
     def test(self):
-        start = time.perf_counter()
-        for i in self._list:
-            self.abstractTable.add(i)
-        end = time.perf_counter()
+        self.testAdd()
+        self.testExists()
+        self.testRemove()
+        print('---End---')
 
-        print('Adding time: ', Decimal(end - start))
-
-        start = time.perf_counter()
-        for i in self._find:
-            self.abstractTable.exists(i)
-        end = time.perf_counter()
-
-        print('Checking if exists time: ', Decimal(end - start))
-
+    def testRemove(self):
         start = time.perf_counter()
         for i in self._find:
             self.abstractTable.remove(i)
         end = time.perf_counter()
-
         print('Removing time: ', Decimal(end - start))
-        print('---End---')
+
+    def testExists(self):
+        start = time.perf_counter()
+        for i in self._find:
+            self.abstractTable.exists(i)
+        end = time.perf_counter()
+        print('Checking if exists time: ', Decimal(end - start))
+
+    def testAdd(self):
+        start = time.perf_counter()
+        for i in self._list:
+            self.abstractTable.add(i)
+        end = time.perf_counter()
+        print('Adding time: ', Decimal(end - start))
