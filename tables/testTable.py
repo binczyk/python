@@ -27,26 +27,26 @@ class TestTable(AbstractTable):
         print(type(abstractTable))
 
     def test(self):
-        self.testAdd()
-        self.testExists()
-        self.testRemove()
+        self._testAdd()
+        self._testExists()
+        self._testRemove()
         print('---End---')
 
-    def testRemove(self):
+    def _testRemove(self):
         start = time.perf_counter()
         for i in self._find:
             self.abstractTable.remove(i)
         end = time.perf_counter()
         print('Removing time: ', Decimal(end - start))
 
-    def testExists(self):
+    def _testExists(self):
         start = time.perf_counter()
         for i in self._find:
             self.abstractTable.exists(i)
         end = time.perf_counter()
         print('Checking if exists time: ', Decimal(end - start))
 
-    def testAdd(self):
+    def _testAdd(self):
         start = time.perf_counter()
         for i in self._list:
             self.abstractTable.add(i)
