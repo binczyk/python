@@ -1,16 +1,15 @@
 from search.patternSearch import PatternSearch
 
 
-class Sunday(PatternSearch):
+class SundayCustom(PatternSearch):
     def __init__(self, text, pattern):
         super().__init__(text, pattern)
 
     def search(self):
         itr = 0
         while itr <= len(self.text) - self._patternLen:
-            self.numberOfLoops += 1
-            if self.text[itr:itr + self._patternLen] == self.pattern:
-                return itr;
+            if self.matchesAt(self.text, itr, self.pattern):
+                return itr
             else:
                 itr += self._incrementIterator(itr)
         return 'NaN'

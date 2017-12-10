@@ -9,3 +9,10 @@ class PatternSearch(object):
 
     def search(self):
         raise Exception("NotImplementedException")
+
+    def matchesAt(self, text, position, pattern):
+        for itr in range(len(pattern)):
+            self.numberOfLoops += 1
+            if pattern[itr] != text[itr + position]:
+                return False
+        return True

@@ -1,35 +1,34 @@
-import time
-from decimal import getcontext, Decimal
+import random
+import string
 
 from search.force import Force
-from search.sunday import Sunday
-from search.sunday2char import Sunday2char
+from search.graph import Graph
+from search.patternSearchTest import PatternSearchTest
+from search.sunday2charCustom import Sunday2charCustom
+from search.sunday2charOriginal import Sunday2charOriginal
+from search.sundayCustom import SundayCustom
+from search.sundayOriginal import SundayOriginal
 
-getcontext().prec = 50
+text_length = 100000
+numberOfCompersion = []
 
-text = 'abccbacbacbabcbcbcbabababcbcbabcbcbcbccbcbcbcccbcbbbbaaaabcbacbabcabcbcacbabbcbcbcbbcbccbaacacacacacbabababcbccaaacbacbcbacbacbacbaaaccbbacbacbcabacbacbbcbcbbbcbcbcbaaacacacacaabababcacbbcabcba'
-pattern = 'cacbabababcbccaaa'
+text = ''.join(random.choice(string.ascii_letters) for _ in range(text_length))
+pattern = text[99000:100000]
 
-start = time.perf_counter()
-force = Force(text, pattern)
-# force = Force(Dictionary.LONG_TEXT.value, Dictionary.SHORT_PATTERN.value)
-print('Force')
-print(str(force.search()) + ' number of comparison: ' + str(force.numberOfLoops))
-end = time.perf_counter()
-print('took: ' + str(Decimal(end - start)))
+patternSearchTest = PatternSearchTest(Force(text, pattern));
+numberOfCompersion.append(patternSearchTest.test())
 
-start = time.perf_counter()
-sunday = Sunday(text, pattern)
-#sunday = Sunday(Dictionary.LONG_TEXT.value, Dictionary.SHORT_PATTERN.value)
-print('Sunday')
-print(str(sunday.search()) + ' number of comparison: ' + str(sunday.numberOfLoops))
-end = time.perf_counter()
-print('took: ' + str(Decimal(end - start)))
+patternSearchTest = PatternSearchTest(SundayCustom(text, pattern));
+numberOfCompersion.append(patternSearchTest.test())
 
-start = time.perf_counter()
-sunday2char = Sunday2char(text, pattern)
-#sunday2char = Sunday2char(Dictionary.LONG_TEXT.value, Dictionary.SHORT_PATTERN.value)
-print('Sunday2char')
-print(str(sunday2char.search()) + ' number of comparison: ' + str(sunday2char.numberOfLoops))
-end = time.perf_counter()
-print('took: ' + str(Decimal(end - start)))
+patternSearchTest = PatternSearchTest(Sunday2charCustom(text, pattern));
+numberOfCompersion.append(patternSearchTest.test())
+
+patternSearchTest = PatternSearchTest(SundayOriginal(text, pattern));
+numberOfCompersion.append(patternSearchTest.test())
+
+patternSearchTest = PatternSearchTest(Sunday2charOriginal(text, pattern));
+numberOfCompersion.append(patternSearchTest.test())
+
+graph = Graph(numberOfCompersion)
+graph.draw()
