@@ -29,7 +29,7 @@ print('zad4')
 print(max(list(x - 8 for x in doubleList), key=abs))
 
 print('zad5')
-print(max(list(i * val for itr, val in enumerate(doubleList) if itr == i - i for i in range(40))))
+print(max(list(i * val - i for itr, val in enumerate(doubleList) for i in range(40))))
 
 print('zad6')
 bList = (2, 3, 8, 9)
