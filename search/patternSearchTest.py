@@ -5,6 +5,7 @@ from search.patternSearch import PatternSearch
 
 
 class PatternSearchTest(PatternSearch):
+    time = ''
 
     def __init__(self, algorithm):
         getcontext().prec = 100
@@ -17,6 +18,7 @@ class PatternSearchTest(PatternSearch):
         print('Found at: ', self.algorithm.search())
         end = time.perf_counter()
         print('Number of comparison: ' + str(self.algorithm.numberOfLoops))
-        print('took: ' + str(Decimal(end - start)))
+        self.time = str(Decimal(end - start))
+        print('took: ' + self.time)
         print('------END------')
         return self.algorithm.numberOfLoops
