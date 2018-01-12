@@ -95,9 +95,8 @@ class Heap():
 
     # A utility function to check if a given vertex
     # 'v' is in min heap or not
-    def isInMinHeap(self, v):
-
-        if self.pos[v] < self.size:
+    def isInMinHeap(self, vertex):
+        if vertex < self.size:
             return True
         return False
 
