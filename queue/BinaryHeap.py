@@ -36,9 +36,9 @@ class BinaryHeap(Queue):
 
     def _upHeap(self, index):
         while index > 0:
-            parentId = self.tab[index] > self.parent(index)
-            if self.tab[parentId] >= self.tab[index]: break
-            self._swap(index, parentId)
+            parentId = self.tab[index]
+            if self.tab[parentId][2] <= self.tab[index][2]: break
+            self._swap(parentId, index)
             index = parentId
 
     def _downHeap(self, index):

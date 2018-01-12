@@ -18,7 +18,7 @@ class Graph():
 
     def addEdge(self, start, destination, weight):
         newNode = [destination, weight]
-        self._connect(destination, newNode)
+        self._connect(start, newNode)
         newNode = [start, weight]
         self._connect(destination, newNode)
 
