@@ -3,10 +3,10 @@ class Heap():
     def __init__(self):
         self.array = []
         self.size = 0
-        self.pos = []
+        self.position = []
 
-    def newMinHeapNode(self, v, dist):
-        minHeapNode = [v, dist]
+    def newMinHeapNode(self, vertex, minWeightOfVertex):
+        minHeapNode = [vertex, minWeightOfVertex]
         return minHeapNode
 
     # A utility function to swap two nodes of
@@ -37,8 +37,8 @@ class Heap():
         # if idx is not smallest
         if smallest != idx:
             # Swap positions
-            self.pos[self.array[smallest][0]] = idx
-            self.pos[self.array[idx][0]] = smallest
+            self.position[self.array[smallest][0]] = idx
+            self.position[self.array[idx][0]] = smallest
 
             # Swap nodes
             self.swapMinHeapNode(smallest, idx)
@@ -47,11 +47,6 @@ class Heap():
 
     # Standard function to extract minimum node from heap
     def extractMin(self):
-
-        # Return NULL wif heap is empty
-        if self.isEmpty() == True:
-            return
-
         # Store the root node
         root = self.array[0]
 
@@ -60,8 +55,8 @@ class Heap():
         self.array[0] = lastNode
 
         # Update position of last node
-        self.pos[lastNode[0]] = 0
-        self.pos[root[0]] = self.size - 1
+        self.position[lastNode[0]] = 0
+        self.position[root[0]] = self.size - 1
 
         # Reduce heap size and heapify root
         self.size -= 1
@@ -72,26 +67,25 @@ class Heap():
     def isEmpty(self):
         return True if self.size == 0 else False
 
-    def decreaseKey(self, v, dist):
+    def decreaseKey(self, vertex, minWeightOfVertex):
 
         # Get the index of v in  heap array
 
-        i = self.pos[v]
+        index = self.position[vertex]
 
-        # Get the node and update its dist value
-        self.array[i][1] = dist
+        # Get the node and update its minWeightOfVertex value
+        self.array[index][1] = minWeightOfVertex
 
         # Travel up while the complete tree is not
         # hepified. This is a O(Logn) loop
-        while i > 0 and self.array[i][1] < \
-                self.array[(i - 1) // 2][1]:
+        while index > 0 and self.array[index][1] < self.array[(index - 1) // 2][1]:
             # Swap this node with its parent
-            self.pos[self.array[i][0]] = (i - 1) // 2
-            self.pos[self.array[(i - 1) // 2][0]] = i
-            self.swapMinHeapNode(i, (i - 1) // 2)
+            self.position[self.array[index][0]] = (index - 1) // 2
+            self.position[self.array[(index - 1) // 2][0]] = index
+            self.swapMinHeapNode(index, (index - 1) // 2)
 
             # move to parent index
-            i = (i - 1) // 2;
+            index = (index - 1) // 2;
 
     # A utility function to check if a given vertex
     # 'v' is in min heap or not
