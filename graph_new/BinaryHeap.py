@@ -20,7 +20,7 @@ class BinaryHeap:
             index = self.heapTable.index(child)
 
     def _down(self, index):
-        while True:
+        while not self.isEmpty():
             parent = self.heapTable[index]
             if self._right(index) < len(self.heapTable):
                 if self.heapTable[self._left(index)].waight <= self.heapTable[self._right(index)].waight:
@@ -33,7 +33,7 @@ class BinaryHeap:
                     self._swap(parent, child)
                     index = self.heapTable.index(parent)
 
-            elif self._left(index) <= len(self.heapTable):
+            elif self._left(index) < len(self.heapTable):
                 child = self.heapTable[self._left(index)]
                 if parent.waight < child.waight:
                     break
