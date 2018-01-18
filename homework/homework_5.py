@@ -49,33 +49,3 @@ triangle = Triangle(a, b, c)
 
 print(simplify(triangle.area))
 print(abs(triangle.area.evalf(subs={ax: 0, ay: 0, bx: 2, by: 2, cx: 4, cy: 0})))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

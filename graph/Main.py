@@ -1,10 +1,25 @@
+from graph.Edge import Edge
 from graph.Graph import Graph
+from graph.GraphPrinter import GraphPrinter
 
 graph = Graph(5)
-graph.addEdge(0, 1, 1)
-graph.addEdge(0, 2, 2)
-graph.addEdge(1, 4, 3)
-graph.addEdge(1, 3, 0)
-graph.addEdge(2, 3, 4)
-graph.addEdge(3, 4, 4)
-graph.PrimMST()
+
+edgesList = []
+edgesList.append(Edge('A', 'B', 5))
+edgesList.append(Edge('A', 'C', 5))
+edgesList.append(Edge('A', 'D', 5))
+edgesList.append(Edge('A', 'E', 5))
+edgesList.append(Edge('B', 'C', 5))
+edgesList.append(Edge('B', 'D', 5))
+edgesList.append(Edge('B', 'E', 5))
+edgesList.append(Edge('C', 'D', 5))
+edgesList.append(Edge('C', 'E', 5))
+edgesList.append(Edge('D', 'E', 5))
+
+graph.addEdges(edgesList)
+
+for itr in edgesList:
+    itr.print()
+
+graphPrinter = GraphPrinter(graph)
+graphPrinter.print()

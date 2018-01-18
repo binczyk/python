@@ -1,11 +1,6 @@
 print('zad0')
 
-import math
 import random
-import statistics as s
-import time
-from fractions import Fraction as F
-from functools import reduce
 
 doubleList = [random.uniform(0, 9) for _ in range(40)]
 print(doubleList)
