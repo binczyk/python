@@ -25,26 +25,25 @@ class Graph:
 
     def getMST(self):
         heap = BinaryHeap()
-        keyList = []
         visited = {}
         MST = []
         for index, node in enumerate(self.adjacencyList):
             visited[node] = False
-            keyList.append(node)
 
-        currentVertex = 0
-        visited[keyList[currentVertex]] = True
+        currentVertex = next(iter(self.adjacencyList.keys()))
+        visited[currentVertex] = True
 
         for itr in range(self.numberOfVertex - 1):
-            for neighbor in (self.getEdges(keyList[currentVertex])):
+            for neighbor in (self.getEdges(currentVertex)):
                 if not visited.get(neighbor.toVertex):
                     heap.add(neighbor)
+
             while not heap.isEmpty():
                 cheapestVertex = heap.pop_top()
                 if not visited.get(cheapestVertex.toVertex):
                     MST.append(cheapestVertex)
                     visited[cheapestVertex.toVertex] = True
-                    currentVertex = keyList.index(cheapestVertex.toVertex)
+                    currentVertex = cheapestVertex.toVertex
                     break
 
         print('MST:')

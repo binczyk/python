@@ -26,7 +26,7 @@ class GraphPrinter:
 
         if edgeVertex not in self._existNodes and edgeVertexRevers not in self._existNodes:
             if edgeVertex in self._mstList:
-                graphPrinter.edge(edge.fromVertex, edge.toVertex, label=str(edge.waight), color='Green', dir='none')
+                graphPrinter.edge(edge.fromVertex, edge.toVertex, label=str(edge.waight), color='Red', dir='none')
             else:
                 graphPrinter.edge(edge.fromVertex, edge.toVertex, label=str(edge.waight), dir='none')
 
@@ -44,7 +44,7 @@ class GraphPrinter:
             graphPrinter.node(node)
 
     def print(self):
-        graphPrinter = graphviz.Digraph(format='svg')
+        graphPrinter = graphviz.Graph (format='svg')
         self._addUniqueEdges(graphPrinter)
 
         graphPrinter.attr(label=r'\n\nAlgorytm Prima\nMinimalne drzewo rozpinające')
